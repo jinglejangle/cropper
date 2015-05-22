@@ -8,20 +8,10 @@ if [ $1 == "" ];
 then
     echo "Please specify url of the image to resize. eg ./cropper.sh http://i.imgur.com/yGBL5zc.jpg "; 
 fi;
-
-export leftWidth=1600;
-export leftHeight=900;
-export leftHeightOffset=0;
-
-export midWidth=1920;
-export midHeight=1200;
-export midHeightOffset=0;
-
-export rightWidth=1600;
-export rightHeight=900;
-export rightHeightOffset=0;
+source config.sh 
 
 let totalSize=$leftWidth+$midWidth+$rightWidth; 
+echo "totalSize: $totalSize"
 export totalSize; 
 
 function resizeImage { 
