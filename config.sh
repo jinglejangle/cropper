@@ -1,4 +1,6 @@
 
+export base="downloads/"
+
 # Mine # 
 export leftWidth=1680;
 export leftHeight=1080;
@@ -12,7 +14,6 @@ export rightWidth=1440;
 export rightHeight=1080;
 export rightHeightOffset=0;
 
-export base="downloads/"
 
 ###########  EXAMPLE  ##########
 
@@ -29,4 +30,3 @@ export base="downloads/"
 #export rightHeightOffset=0;
 
 
-export base="downloads/"

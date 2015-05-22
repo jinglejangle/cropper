@@ -3,12 +3,20 @@
 # play with the variables to match your resolutions for each monitor. 
 # the heightOffset variables help you make sure it all lines up as you want. 
 # This script needs imageMagick to be installed 
+# Configure your screen resolutions and height offsets for them in config.sh 
+
 
 if [ $1 == "" ]; 
 then
     echo "Please specify url of the image to resize. eg ./cropper.sh http://i.imgur.com/yGBL5zc.jpg "; 
 fi;
-source config.sh 
+if [ -a config.sh ];
+then
+    source config.sh 
+else
+    echo "config.sh is missing"
+    exit; 
+fi; 
 
 let totalSize=$leftWidth+$midWidth+$rightWidth; 
 echo "totalSize: $totalSize"
