@@ -9,7 +9,9 @@
 if [ "$1" == "" ]; 
 then
     echo "Please specify url of the image to resize. eg ./cropper.sh http://i.imgur.com/yGBL5zc.jpg "; 
+    exit; 
 fi;
+
 if [ -a config.sh ];
 then
     source config.sh 
