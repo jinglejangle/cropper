@@ -17,6 +17,10 @@ else
     echo "config.sh is missing"
     exit; 
 fi; 
+if [ ! -d "$base" ]; then
+    echo "$base directory is missing. maybe you should create it first?"; 
+    exit; 
+fi
 
 let totalSize=$leftWidth+$midWidth+$rightWidth; 
 echo "totalSize: $totalSize"
