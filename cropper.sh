@@ -6,7 +6,7 @@
 # Configure your screen resolutions and height offsets for them in config.sh 
 
 
-if [ $1 == "" ]; 
+if [ "$1" == "" ]; 
 then
     echo "Please specify url of the image to resize. eg ./cropper.sh http://i.imgur.com/yGBL5zc.jpg "; 
 fi;
