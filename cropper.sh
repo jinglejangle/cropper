@@ -2,7 +2,7 @@
 # Script to crop an image from a url into the right resolutions for 3 monitors. 
 # play with the variables to match your resolutions for each monitor. 
 # the heightOffset variables help you make sure it all lines up as you want. 
-# This script needs imageMagick to be installed (expects it in /usr/local/bin/) . 
+# This script needs imageMagick to be installed 
 
 if [ $1 == "" ]; 
 then
