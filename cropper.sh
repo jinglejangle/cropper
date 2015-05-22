@@ -16,12 +16,12 @@ export totalSize;
 
 function resizeImage { 
     #resize image so it fits 
-      convert $fname  -resize "$totalSize"x $fname
+      convert "$base"$fname  -resize "$totalSize"x "$base"$fname
 }
 
 function getImage { 
     echo Fetching Image...
-    curl --silent -O $1 ;
+    curl --silent -O $1 && mv "$fname" "$base"
     echo $fname saved. 
 }
 
@@ -30,15 +30,15 @@ function splitImage {
     widthOffset=0; 
     dim="$leftWidth"x"$leftHeight"+"$widthOffset"+"$leftHeightOffset"
 
-    convert $fname -crop $dim +repage left_$fname;
+    convert "$base"$fname -crop $dim +repage "$base"left_$fname;
 
     let widthOffset=$widthOffset+$leftWidth; 
     dim="$midWidth"x"$midHeight"+"$widthOffset"+"$midHeightOffset"
-    convert $fname -crop $dim +repage middle_$fname;
+    convert "$base"$fname -crop $dim +repage "$base"middle_$fname;
 
     let widthOffset=$widthOffset+$midWidth; 
     dim="$rightWidth"x"$rightHeight"+"$widthOffset"+"$rightHeightOffset"
-    convert $fname -crop $dim +repage right_$fname;
+    convert "$base"$fname -crop $dim +repage "$base"right_$fname;
 
     echo Done; 
 }

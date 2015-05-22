@@ -12,6 +12,7 @@ export rightWidth=1440;
 export rightHeight=1080;
 export rightHeightOffset=0;
 
+export base="downloads/"
 
 ###########  EXAMPLE  ##########
 
@@ -28,3 +29,4 @@ export rightHeightOffset=0;
 #export rightHeightOffset=0;
 
 
+export base="downloads/"
