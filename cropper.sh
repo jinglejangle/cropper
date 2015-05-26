@@ -15,6 +15,7 @@ fi;
 if [ -a config.sh ];
 then
     source config.sh 
+    source setter.sh 
 else
     echo "config.sh is missing"
     exit; 
@@ -62,4 +63,7 @@ getImage $1;
 resizeImage; 
 splitImage;
 
-
+#Set the wallpapers using functions in setter.sh  
+#setRemoteBgXFCE $base"$remote_position"_"$fname"; 
+#setLocalBgOSX $base"middle_"$fname "1";
+#setLocalBgOSX $base"right_"$fname "2";
