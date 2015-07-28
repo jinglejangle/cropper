@@ -12,6 +12,13 @@ then
     exit; 
 fi;
 
+offset=0; 
+if [ "$2" == "--offset" ]; 
+then
+  offset="$3"; 
+fi;
+
+
 if [ -a config.sh ];
 then
     source config.sh 
@@ -29,10 +36,34 @@ let totalSize=$leftWidth+$midWidth+$rightWidth;
 echo "totalSize: $totalSize"
 export totalSize; 
 
+let minHeight=$leftHeight; 
+if [ $minHeight -lt $midHeight ] ; then 
+    let minHeight=$midHeight; 
+fi;
+if [ $minHeight -lt $rightHeight ] ; then 
+    let minHeight=$rightHeight; 
+fi;
+
+echo "Min height is $minHeight"; 
+
 function resizeImage { 
     #resize image so it fits 
       convert "$base"$fname  -resize "$totalSize"x "$base"$fname
+
+    imageSize=`identify $base$fname | awk '{print $3}'`; 
+    echo "Size is now $imageSize";
+     
+    let imageHeight=`echo $imageSize | awk -Fx '{print $2}'`; 
+
+    if [ $imageHeight -lt $minHeight ]; then 
+
+        echo "Height is not enough for minimum. Add more size!"; 
+        convert "$base"$fname  -resize x$minHeight "$base"$fname
+        imageSize=`identify $base$fname | awk '{print $3}'`; 
+        echo "Resize is now $imageSize";
+   fi; 
 }
+
 
 function getImage { 
     echo Fetching Image...
@@ -64,6 +95,6 @@ resizeImage;
 splitImage;
 
 #Set the wallpapers using functions in setter.sh  
-#setRemoteBgXFCE $base"$remote_position"_"$fname"; 
-#setLocalBgOSX $base"middle_"$fname "1";
-#setLocalBgOSX $base"right_"$fname "2";
+setRemoteBgXFCE $base"$remote_position"_"$fname"; 
+setLocalBgOSX $base"middle_"$fname "1";
+setLocalBgOSX $base"right_"$fname "2";
